@@ -5,14 +5,16 @@ import java.util.HashMap;
 public class Node {
 	
 	private String value;
+	private boolean visited;
 	private HashMap<String, Node> neighbors;
 	
 	
 	public Node(String input) {
 		value = input;
+		visited = false;
 		neighbors = new HashMap<String, Node>();
 	}
-
+	
 	
 	public String getValue() {
 		return value;
@@ -22,15 +24,26 @@ public class Node {
 	public HashMap<String, Node> getNeighbors() {
 		return neighbors;
 	}
-
-
-	public boolean setNeighbor(Node neighborNode) {
-		if (neighbors.size() < 4) {
+	
+	
+	public boolean isVisited() {
+		return visited;
+	}
+	
+	
+	public void setVisited() {
+		visited = true;
+	}
+	
+	
+	public void setUnvisited() {
+		visited = false;
+	}
+	
+	
+	public void setNeighbor(Node neighborNode) {
+		if (!neighbors.containsValue(neighborNode))
 			neighbors.put(neighborNode.getValue(), neighborNode);
-			return true;
-		}
-		
-		return false;
 	}
 	
 	
@@ -44,6 +57,7 @@ public class Node {
 	}
 	
 	
+	@Override
 	public String toString() {
 		String retString = "Node: " + value;
 		String[] neighborsArray = new String[neighbors.size()];
@@ -51,7 +65,7 @@ public class Node {
 		
 		for (int i = 0; i < neighborsArray.length; i++)
 			if (i == 0)
-				retString += "\nNeighbors: " + neighborsArray[i];
+				retString += "\nNeighbor(s): " + neighborsArray[i];
 			else
 				retString += ", " + neighborsArray[i];
 		
