@@ -44,7 +44,6 @@ public class Graph {
 	}
 	
 	
-	// Edge adding/removing, may need to check that first and second exist in the graph already (or add them if they don't exist?)
 	public void addUndirectedEdge(final Node first, final Node second) throws Exception {
 		if (graphNodes.containsValue(first) && graphNodes.containsValue(second)) {
 			first.setNeighbor(second);
