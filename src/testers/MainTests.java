@@ -10,6 +10,7 @@ import question_3.*;
 
 public class MainTests {
 	
+	// Undirected Graph
 	@Test		// Doesn't fully test automatically, the printed output must be manually checked
 	public void createRandomUnweightedGraphIterTest1() throws Exception {
 		Graph aGraph = Main.createRandomUnweightedGraphIter(5);
@@ -30,4 +31,7 @@ public class MainTests {
 		for (Node value: nodeSet)
 			System.out.println(value + "\n");
 	}
+	
+	
+	// Directed Graph
 }
