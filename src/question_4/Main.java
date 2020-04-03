@@ -7,8 +7,13 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		try {
+			System.out.print("Using modified DFS on random DAG of 1000 nodes... ");
 			TopSort.mDFS(createRandomDAGIter(1000));
+			System.out.println("Done");
+			
+			System.out.print("Using Kahn's on random DAG of 1000 nodes... ");
 			TopSort.Kahns(createRandomDAGIter(1000));
+			System.out.println("Done");
 		}
 		catch (Exception e) {
 			System.out.println(e);
@@ -25,7 +30,7 @@ public class Main {
 			Node holder = retGraph.getNode(Integer.toString(i));
 			
 			for (Node value: nodeSet) {
-				if (value != holder && rng.nextInt(100) < 50)
+				if (value != holder && rng.nextInt(100) < 30)
 					retGraph.addDirectedEdge(holder, value);
 			}
 		}
