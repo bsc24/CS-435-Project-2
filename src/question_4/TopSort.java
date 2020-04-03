@@ -46,12 +46,6 @@ public class TopSort {
 				mDFSHelper(value, retList);
 		}
 		
-		/*
-		int stackSize = nodeStack.size();
-		for (int i = 0; i < stackSize; i++)
-			retList.add(nodeStack.pop());
-		*/
-		
 		return retList;
 	}
 	
@@ -63,6 +57,5 @@ public class TopSort {
 		}
 		
 		retList.add(0, current);
-		//nodeStack.push(current);
 	}
 }
