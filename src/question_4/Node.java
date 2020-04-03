@@ -2,6 +2,7 @@ package question_4;
 
 import java.util.HashMap;
 
+// This node is *slightly* different from question_3.Node, it uses up a bit more memory because of storing inDegree but otherwise should be the same
 public class Node {
 	
 	private String value;
@@ -29,11 +30,6 @@ public class Node {
 		return neighbors;
 	}
 	
-	/*
-	public HashMap<String, Node> getNeighborsIn() {
-		return neighborsIn;
-	}
-	*/
 	
 	public boolean isVisited() {
 		return visited;
@@ -52,9 +48,10 @@ public class Node {
 	
 	public void setNeighbor(Node neighborNode) {
 		if (!neighbors.containsValue(neighborNode)) {
-			neighbors.put(neighborNode.getValue(), neighborNode);
 			neighborNode.inDegree++;
 		}
+		
+		neighbors.put(neighborNode.getValue(), neighborNode);
 	}
 	
 	
@@ -70,17 +67,6 @@ public class Node {
 		return neighbors.containsValue(neighborNode);
 	}
 	
-	/*
-	public void setNeighborIn(Node neighborNode) {
-		if (!neighborsIn.containsValue(neighborNode))
-			neighborsIn.put(neighborNode.getValue(), neighborNode);
-	}
-	
-	
-	public void removeNeighborIn(Node neighborNode) {
-		neighborsIn.remove(neighborNode);
-	}
-	*/
 	
 	public int getInDegree() {
 		return inDegree;

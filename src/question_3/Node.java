@@ -42,8 +42,7 @@ public class Node {
 	
 	
 	public void setNeighbor(Node neighborNode) {
-		if (!neighbors.containsValue(neighborNode))
-			neighbors.put(neighborNode.getValue(), neighborNode);
+		neighbors.put(neighborNode.getValue(), neighborNode);
 	}
 	
 	
