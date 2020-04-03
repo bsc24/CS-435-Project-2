@@ -11,7 +11,7 @@ import question_4.Node;
 import question_4.Main;
 import question_4.TopSort;
 
-public class TopSortTests {
+public class Question4TopSortTests {
 
 	@Test		// Doesn't fully test automatically, the printed output must be manually checked
 	public void mDFSTest() throws Exception {

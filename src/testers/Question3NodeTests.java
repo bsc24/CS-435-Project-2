@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import question_3.Node;
 
-public class NodeTests {
+public class Question3NodeTests {
 
 	@Test
 	public void stringConstructorTest() {
@@ -42,7 +42,7 @@ public class NodeTests {
 		aNode.setNeighbor(anotherNode);
 		assertTrue(aNode.hasNeighbor(anotherNode));
 		assertFalse(aNode.hasNeighbor(aNode));
-		assertEquals("Node: " + value + "\nNeighbors: " + value2, aNode.toString());
+		assertEquals("Node: " + value + "\nNeighbor(s): " + value2, aNode.toString());
 	}
 	
 	

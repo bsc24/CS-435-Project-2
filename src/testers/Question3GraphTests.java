@@ -9,7 +9,7 @@ import org.junit.Test;
 import question_3.Graph;
 import question_3.Node;
 
-public class GraphTests {
+public class Question3GraphTests {
 	
 	@Test
 	public void defaultConstructorTest() {
@@ -92,17 +92,19 @@ public class GraphTests {
 		String[] values = {"A String value", "Another String value"};
 		Graph aGraph = new Graph(values);
 		
-		HashSet setOfNodes = aGraph.getAllNodes();
+		HashSet<Node> setOfNodes = aGraph.getAllNodes();
 		Iterator<Node> something = setOfNodes.iterator();
 		
 		Node first = something.next();
 		Node second = something.next();
 		
 		assertFalse(aGraph.undirectedEdgeExists(first, second));
+		assertFalse(aGraph.undirectedEdgeExists(second, first));
 		aGraph.addUndirectedEdge(first, second);
 
 		assertNotEquals(first, second);
 		assertTrue(aGraph.undirectedEdgeExists(first, second));
+		assertTrue(aGraph.undirectedEdgeExists(second, first));
 	}
 	
 	
@@ -111,7 +113,7 @@ public class GraphTests {
 		String[] values = {"A String value", "Another String value"};
 		Graph aGraph = new Graph(values[0]);
 		
-		HashSet setOfNodes = aGraph.getAllNodes();
+		HashSet<Node> setOfNodes = aGraph.getAllNodes();
 		Iterator<Node> something = setOfNodes.iterator();
 		
 		Node first = something.next();
@@ -125,7 +127,7 @@ public class GraphTests {
 	public void removeUndirectedEdgeTest() throws Exception {
 		String[] values = {"A String value", "Another String value"};
 		Graph aGraph = new Graph(values);
-		HashSet setOfNodes = aGraph.getAllNodes();
+		HashSet<Node> setOfNodes = aGraph.getAllNodes();
 		Iterator<Node> something = setOfNodes.iterator();
 		Node first = something.next();
 		Node second = something.next();
@@ -143,7 +145,7 @@ public class GraphTests {
 		String[] values = {"A String value", "Another String value"};
 		Graph aGraph = new Graph(values[0]);
 		
-		HashSet setOfNodes = aGraph.getAllNodes();
+		HashSet<Node> setOfNodes = aGraph.getAllNodes();
 		Iterator<Node> something = setOfNodes.iterator();
 		
 		Node first = something.next();
@@ -151,12 +153,4 @@ public class GraphTests {
 
 		aGraph.removeUndirectedEdge(first, second);
 	}
-	
-	
-	/*
-	@Test
-	public void addNodeTest() {
-		fail("Not yet implemented");
-	}
-	*/
 }

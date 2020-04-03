@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import question_3.*;
 
-public class GraphSearchTests {
+public class Question3GraphSearchTests {
 
 	@Test		// Doesn't fully test automatically, the printed output must be manually checked
 	public void DFSRecTest() throws Exception{
@@ -17,8 +17,15 @@ public class GraphSearchTests {
 		Node end = aGraph.getNode("9");
 		ArrayList<Node> DFSearch = GraphSearch.DFSRec(start, end);
 		System.out.println("Test: DFSRecTest");
-		for (Node value: DFSearch)
-			System.out.println(value + "\n");
+		if (DFSearch == null) {
+			System.out.println("No path found, printing nodes");
+			for (Node value: aGraph.getAllNodes())
+				System.out.println(value + "\n");
+		}
+		else {
+			for (Node value: DFSearch)
+				System.out.println(value + "\n");
+		}
 	}
 	
 	
@@ -29,8 +36,15 @@ public class GraphSearchTests {
 		Node end = aGraph.getNode("9");
 		ArrayList<Node> DFSearch = GraphSearch.DFSIter(start, end);
 		System.out.println("Test: DFSIterTest");
-		for (Node value: DFSearch)
-			System.out.println(value + "\n");
+		if (DFSearch == null) {
+			System.out.println("No path found, printing nodes");
+			for (Node value: aGraph.getAllNodes())
+				System.out.print(value + "\n");
+		}
+		else {
+			for (Node value: DFSearch)
+				System.out.println(value + "\n");
+		}
 	}
 	
 	
