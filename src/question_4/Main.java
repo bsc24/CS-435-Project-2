@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		try {
 			System.out.print("Using modified DFS on random DAG of 1000 nodes... ");
 			TopSort.mDFS(createRandomDAGIter(1000));
