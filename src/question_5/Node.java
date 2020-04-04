@@ -1,26 +1,33 @@
 package question_5;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 public class Node {
 	
+	private HashSet<Node> allGraphNodes;	// Could be made static, but then can't have different graphs at once
 	private String value;
 	private boolean visited;
 	private int inDegree;
 	private HashMap<Node, Integer> neighbors;
 	
 	
-	public Node(String input) {
+	public Node(String input, HashSet<Node> graphNodes) {
 		value = input;
 		visited = false;
 		neighbors = new HashMap<Node, Integer>();
 		inDegree = 0;
+		allGraphNodes = graphNodes;
 	}
 	
 	
 	public String getValue() {
 		return value;
+	}
+	
+	public HashSet<Node> getAllGraphNodes() {
+		return allGraphNodes;
 	}
 	
 	
@@ -65,6 +72,14 @@ public class Node {
 	}
 	
 	
+	public int distanceToNeighbor(Node neighborNode) {
+		if (hasNeighbor(neighborNode))
+			return neighbors.get(neighborNode);
+		
+		return -1;
+	}
+	
+	
 	public int getInDegree() {
 		return inDegree;
 	}
@@ -73,6 +88,7 @@ public class Node {
 	@Override
 	public String toString() {
 		String retString = "Node: " + value;
+		
 		Node[] neighborsArray = new Node[neighbors.size()];
 		neighbors.keySet().toArray(neighborsArray);
 		
@@ -80,7 +96,7 @@ public class Node {
 			if (i == 0)
 				retString += "\nNeighbor(s): " + neighborsArray[i].getValue() + "," + neighbors.get(neighborsArray[i]);
 			else
-				retString += "; " + neighborsArray[i];
+				retString += "; " + neighborsArray[i].getValue() + "," + neighbors.get(neighborsArray[i]).toString();
 		
 		return retString;
 	}
