@@ -2,14 +2,12 @@ package question_4;
 
 import java.util.HashMap;
 
-// This node is *slightly* different from question_3.Node, it uses up a bit more memory because of storing inDegree but otherwise should be the same
 public class Node {
 	
 	private String value;
 	private boolean visited;
 	private int inDegree;
 	private HashMap<String, Node> neighbors;
-	//private HashMap<String, Node> neighborsIn;
 	
 	
 	public Node(String input) {
@@ -17,7 +15,6 @@ public class Node {
 		visited = false;
 		neighbors = new HashMap<String, Node>();
 		inDegree = 0;
-		//neighborsIn = new HashMap<String, Node>();
 	}
 	
 	
