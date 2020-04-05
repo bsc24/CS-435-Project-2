@@ -118,10 +118,30 @@ public class GridNode {
 	@Override
 	public String toString() {
 		String retString = "Node: " + value +
-				"\nNeighbor up: " + neighbors[0].getValue() +
-				"\nNeighbor right: " + neighbors[1].getValue() +
-				"\nNeighbor down: " + neighbors[2].getValue() +
-				"\nNeighbor left: " + neighbors[3].getValue();
+				"\nCoordinates: " + xCoord + "," + yCoord;
+		retString += "\nNeighbor up: ";
+		if (neighbors[0] == null)
+			retString += "null";
+		else
+			retString += neighbors[0].getValue();
+		
+		retString += "\nNeighbor right: ";
+		if (neighbors[1] == null)
+			retString += "null";
+		else
+			retString += neighbors[1].getValue();
+				
+		retString += "\nNeighbor down: ";
+		if (neighbors[2] == null)
+			retString += "null";
+		else
+			retString += neighbors[2].getValue();
+		
+		retString += "\nNeighbor left: ";
+		if (neighbors[3] == null)
+			retString += "null";
+		else
+			retString += neighbors[3].getValue();
 		
 		return retString;
 	}
