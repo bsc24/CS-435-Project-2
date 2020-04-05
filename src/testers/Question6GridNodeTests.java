@@ -110,11 +110,21 @@ public class Question6GridNodeTests {
 		center.setNeighbor(right);
 		
 		String expected = "Node: 0" +
+				"\nCoordinates: 1,1" +
 				"\nNeighbor up: up" +
 				"\nNeighbor right: right" +
 				"\nNeighbor down: down" +
 				"\nNeighbor left: left";
 		
 		assertEquals(expected, center.toString());
+		
+		expected = "Node: up" +
+				"\nCoordinates: 1,2" +
+				"\nNeighbor up: null" +
+				"\nNeighbor right: null" +
+				"\nNeighbor down: null" +
+				"\nNeighbor left: null";
+		
+		assertEquals(expected, up.toString());
 	}
 }
