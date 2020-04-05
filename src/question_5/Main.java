@@ -90,7 +90,10 @@ public class Main {
 			Node previous = null;
 			int distance = -1;
 			
-			if (start.hasNeighbor(value)) {
+			if (value == start) {
+				distance = 0;
+			}
+			else if (start.hasNeighbor(value)) {
 				previous = start;
 				distance = start.distanceToNeighbor(value);
 			}
