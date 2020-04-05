@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class Node {
 	
-	private HashSet<Node> allGraphNodes;	// Could be made static, but then can't have different graphs at once
+	private HashSet<Node> allGraphNodes;
 	private String value;
 	private boolean visited;
 	private int inDegree;
