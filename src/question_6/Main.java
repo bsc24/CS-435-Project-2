@@ -10,6 +10,18 @@ import java.util.Random;
 public class Main {
 
 	public static void main(String[] args) {
+		try {
+			GridGraph aGraph = createRandomGridGraph(100);
+			GridNode sourceNode = aGraph.getNode(0, 0);
+			GridNode destNode = aGraph.getNode(100, 100);
+			ArrayList<GridNode> astarPath = astar(sourceNode, destNode);
+			for (GridNode value: astarPath) {
+				System.out.print(value.getValue() + " ");
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 		
 	}
 	
