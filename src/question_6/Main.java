@@ -60,18 +60,7 @@ public class Main {
 		Comparator<GridNode> distanceToNodeComparator = new Comparator<GridNode>() {
 			@Override
 			public int compare(GridNode first, GridNode second) {
-				
 				return (mapToEnd.get(first)[0] + mapToEnd.get(first)[1]) - (mapToEnd.get(second)[0] + mapToEnd.get(second)[1]);
-				/*
-				if (distanceMap.get(first) == -1) {
-					if (distanceMap.get(second) == -1)
-						return 0;
-					
-					return 1;
-				}
-				
-				return distanceMap.get(first).intValue() - distanceMap.get(second).intValue();
-				*/
 			}
 		};
 		
