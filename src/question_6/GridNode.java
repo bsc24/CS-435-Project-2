@@ -1,9 +1,5 @@
 package question_6;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
-
 public class GridNode {
 	
 	//private HashSet<GridNode> allGraphNodes;	// Could be made static, but then can't have different graphs at once
