@@ -14,9 +14,7 @@ public class Main {
 		try {
 			WeightedGraph aGraph = createRandomCompleteWeightedGraph(4);
 			Node start = aGraph.getNode("0");
-			System.out.println(start);
-			dijkstras(aGraph.getNode("0"));
-			System.out.println("aah");
+			dijkstras(start);
 		}
 		catch (Exception e) {
 			System.out.println(e);
