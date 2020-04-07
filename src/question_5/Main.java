@@ -1,6 +1,5 @@
 package question_5;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,7 +13,7 @@ public class Main {
 		try {
 			WeightedGraph aGraph = createRandomCompleteWeightedGraph(4);
 			Node start = aGraph.getNode("0");
-			dijkstras(start);
+			HashMap<Node, Integer> dijkstrasResult = dijkstras(start);
 		}
 		catch (Exception e) {
 			System.out.println(e);
