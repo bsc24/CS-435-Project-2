@@ -2,7 +2,6 @@ package question_6;
 
 public class GridNode {
 	
-	//private HashSet<GridNode> allGraphNodes;	// Could be made static, but then can't have different graphs at once
 	private String value;
 	private boolean visited;
 	private int xCoord, yCoord;
@@ -17,19 +16,12 @@ public class GridNode {
 			neighbors[i] = null;
 		xCoord = xCoordinate;
 		yCoord = yCoordinate;
-		//allGraphNodes = graphNodes;
 	}
 	
 	
 	public String getValue() {
 		return value;
 	}
-	
-	/*
-	public HashSet<GridNode> getAllGraphNodes() {
-		return allGraphNodes;
-	}
-	*/
 	
 	
 	public GridNode[] getNeighbors() {
