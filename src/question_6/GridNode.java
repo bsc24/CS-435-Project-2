@@ -60,19 +60,19 @@ public class GridNode {
 		
 		if (xDiff == 0) {
 			if (yDiff == -1)
-				return 0;
+				return 0;		// 0 = above
 			else if (yDiff == 1)
-				return 2;
+				return 2;		// 2 = below
 		}
 		
 		if (yDiff == 0) {
 			if (xDiff == -1)
-				return 1;
+				return 1;		// 1 = right
 			else if (xDiff == 1)
-				return 3;
+				return 3;		// 3 = left
 		}
 		
-		return -1;
+		return -1;		// -1 = not adjacent
 	}
 	
 	

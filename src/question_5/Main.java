@@ -66,7 +66,13 @@ public class Main {
 		Comparator<Node> distanceToNodeComparator = new Comparator<Node>() {
 			@Override
 			public int compare(Node first, Node second) {
-				if (distanceMap.get(first) == -1) {
+				
+				/* if a positive int is returned, first belongs after second
+				 * if a negative int is returned, first belongs before second
+				 * if 0 is returned, the two Nodes are equal
+				 */
+				
+				if (distanceMap.get(first) == -1) {			// distanceMap.get(Node) holds -1 to represent infinity, distance infinity belongs after real number distances
 					if (distanceMap.get(second) == -1)
 						return 0;
 					
@@ -83,22 +89,14 @@ public class Main {
 		distanceMap.put(start, null);
 		start.setVisited();
 		
-		for (Node value: start.getAllGraphNodes()) {
-			Node previous = null;
-			int distance = -1;
-			
-			if (value == start) {
-				distance = 0;
+		for (Node value: start.getNeighbors().keySet()) {	// Add all neighbors of the start node to the priority queue
+			if (value == start) {		// If start happens to be a neighbor of itself, it maps to itself with distance 0 instead
+				distanceMap.put(value, 0);
+				previousNode.put(value, null);
 			}
-			else if (start.hasNeighbor(value)) {
-				previous = start;
-				distance = start.distanceToNeighbor(value);
-			}
-			
-			distanceMap.put(value, distance);
-			previousNode.put(value, previous);
-			
-			if (value != start) {
+			else {
+				distanceMap.put(value, start.distanceToNeighbor(value));
+				previousNode.put(value, start);
 				nodePrioQueue.add(value);
 			}
 		}

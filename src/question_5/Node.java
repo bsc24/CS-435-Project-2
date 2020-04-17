@@ -6,7 +6,6 @@ import java.util.HashSet;
 
 public class Node {
 	
-	private HashSet<Node> allGraphNodes;
 	private String value;
 	private boolean visited;
 	private int inDegree;
@@ -18,16 +17,11 @@ public class Node {
 		visited = false;
 		neighbors = new HashMap<Node, Integer>();
 		inDegree = 0;
-		allGraphNodes = graphNodes;
 	}
 	
 	
 	public String getValue() {
 		return value;
-	}
-	
-	public HashSet<Node> getAllGraphNodes() {
-		return allGraphNodes;
 	}
 	
 	

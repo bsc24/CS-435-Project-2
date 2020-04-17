@@ -7,15 +7,24 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			WeightedGraph wGraph = question_5.Main.createRandomCompleteWeightedGraph(121);
+			System.out.print("Generating random weighted graph... ");
+			WeightedGraph wGraph = question_5.Main.createRandomCompleteWeightedGraph(2500);
+			System.out.println(" Done.");
 			Node wStart = wGraph.getNode("0");
 			
-			GridGraph gGraph = question_6.Main.createRandomGridGraph(10);
+			System.out.print("Generating random grid graph... ");
+			GridGraph gGraph = question_6.Main.createRandomGridGraph(49);	// createRandomGridGraph(n) makes a graph with (n+1)^2 nodes
+			System.out.println(" Done.");
 			GridNode gStart = gGraph.getNode(0, 0);
-			GridNode gEnd = gGraph.getNode(10, 10);
+			GridNode gEnd = gGraph.getNode(49, 49);
 			
+			System.out.print("Starting dijkstras... ");
 			question_5.Main.dijkstras(wStart);
+			System.out.println(" Done.");
+			
+			System.out.print("Starting A*... ");
 			question_6.Main.astar(gStart, gEnd);
+			System.out.println(" Done.");
 			
 			int dijkstrasFinalized = 0;
 			for (Node value: wGraph.getAllNodes()) {

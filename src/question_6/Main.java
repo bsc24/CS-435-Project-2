@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -54,8 +55,8 @@ public class Main {
 	
 	
 	public static ArrayList<GridNode> astar(final GridNode sourceNode, final GridNode destNode) {
-		ArrayList<GridNode> retList = new ArrayList<GridNode>();
-		HashMap<GridNode, int[]> mapToEnd = new HashMap<GridNode, int[]>();
+		HashMap<GridNode, int[]> mapToEnd = new HashMap<GridNode, int[]>();			// [GridNode], [distance from start, heuristic distance to end]
+		HashMap<GridNode, GridNode> previousNode = new HashMap<GridNode, GridNode>();		// [GridNode to get to], [GridNode previous to the GridNode to get to]
 		
 		Comparator<GridNode> distanceToNodeComparator = new Comparator<GridNode>() {
 			@Override
@@ -64,12 +65,13 @@ public class Main {
 			}
 		};
 		
-		PriorityQueue<GridNode> nodePrioQueue = new PriorityQueue<GridNode>(distanceToNodeComparator);
+		PriorityQueue<GridNode> nodePrioQueue = new PriorityQueue<GridNode>(distanceToNodeComparator);		// Used for backtracking to save time (thanks for the idea, jb-moroccan!)
 		
 		int[] sourceDistances = {0, heuristic(sourceNode, destNode)};
 		mapToEnd.put(sourceNode, sourceDistances);
 		
 		nodePrioQueue.add(sourceNode);
+		previousNode.put(sourceNode, null);
 		
 		
 		while (!nodePrioQueue.isEmpty()) {
@@ -79,7 +81,6 @@ public class Main {
 				continue;
 			
 			current.setVisited();
-			retList.add(current);
 			
 			if (current == destNode) {
 				break;
@@ -89,41 +90,40 @@ public class Main {
 				if (neighbor == null || neighbor.isVisited())
 					continue;
 				
+				boolean updatePreviousNode = true;
 				int currentDist = mapToEnd.get(current)[0] + 1;
 				
 				if (mapToEnd.containsKey(neighbor)) {
 					if (mapToEnd.get(neighbor)[0] < currentDist) {
 						currentDist = mapToEnd.get(neighbor)[0];
 					}
+					else
+						updatePreviousNode = false;
 				}
 				
 				
 				int[] holder = {currentDist, heuristic(neighbor, destNode)};
 				mapToEnd.put(neighbor, holder);
+				if (updatePreviousNode)
+					previousNode.put(neighbor, current);
 				
 				nodePrioQueue.add(neighbor);
 			}
 		}
 		
+		GridNode current = destNode;
+		ArrayList<GridNode> retList = new ArrayList<GridNode>();
 		
-		
-		for (int currentIndex = retList.size() - 1; currentIndex > 0; currentIndex--) {
-			int previousIndex = currentIndex - 1;
-			GridNode current = retList.get(currentIndex);
-			GridNode previous = retList.get(previousIndex);
-			while (!current.hasNeighbor(previous)) {
-				retList.remove(previousIndex);
-				previousIndex--;
-				currentIndex--;
-				previous = retList.get(previousIndex);
-			}
+		while (current != null) {
+			retList.add(0, current);
+			current = previousNode.get(current);
 		}
 		
 		return retList;
 	}
 	
 	
-	private static int heuristic(final GridNode current, final GridNode destination) {
+	private static int heuristic(final GridNode current, final GridNode destination) {		// heuristic being used here is the Manhattan Distance
 		int xDist = Math.abs(current.getXCoordinate() - destination.getXCoordinate());
 		int yDist = Math.abs(current.getYCoordinate() - destination.getYCoordinate());
 		
