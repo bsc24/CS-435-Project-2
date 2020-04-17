@@ -36,13 +36,13 @@ public class Main {
 			for(int yIndex = 0; yIndex <= n; yIndex++) {
 				aGraph.addNode(Integer.toString(nodeNumber++), xIndex, yIndex);
 				
-				if (yIndex != 0 && rng.nextInt(100) < percentChance) {
+				if (yIndex != 0 && rng.nextInt(100) < percentChance) {			// If the currently added node isn't at the bottom of the graph, 70% chance to make an undirected edge to the GridNode below it
 					GridNode adjacentNode = aGraph.getNode(xIndex, yIndex - 1);
 					GridNode current = aGraph.getNode(xIndex, yIndex);
 					aGraph.addUndirectedEdge(current, adjacentNode);
 				}
 				
-				if (xIndex != 0 && rng.nextInt(100) < percentChance) {
+				if (xIndex != 0 && rng.nextInt(100) < percentChance) {			// If the currently added node isn't at the furthest left of the graph, 70% chance to make an undirected edge to the GridNode to the left of it
 					GridNode adjacentNode = aGraph.getNode(xIndex - 1, yIndex);
 					GridNode current = aGraph.getNode(xIndex, yIndex);
 					aGraph.addUndirectedEdge(current, adjacentNode);
@@ -57,11 +57,11 @@ public class Main {
 	public static ArrayList<GridNode> astar(final GridNode sourceNode, final GridNode destNode) {
 		HashMap<GridNode, int[]> mapToEnd = new HashMap<GridNode, int[]>();			// [GridNode], [distance from start, heuristic distance to end]
 		HashMap<GridNode, GridNode> previousNode = new HashMap<GridNode, GridNode>();		// [GridNode to get to], [GridNode previous to the GridNode to get to]
-		
+																							// Used to backtrack and figure out how we got to the end from start
 		Comparator<GridNode> distanceToNodeComparator = new Comparator<GridNode>() {
 			@Override
 			public int compare(GridNode first, GridNode second) {
-				return (mapToEnd.get(first)[0] + mapToEnd.get(first)[1]) - (mapToEnd.get(second)[0] + mapToEnd.get(second)[1]);
+				return (mapToEnd.get(first)[0] + mapToEnd.get(first)[1]) - (mapToEnd.get(second)[0] + mapToEnd.get(second)[1]);	// Difference of each node's (distance from start + manhattan distance to end)
 			}
 		};
 		
@@ -71,7 +71,7 @@ public class Main {
 		mapToEnd.put(sourceNode, sourceDistances);
 		
 		nodePrioQueue.add(sourceNode);
-		previousNode.put(sourceNode, null);
+		previousNode.put(sourceNode, null);		// there shouldn't be a node previous to our start, set it's previous as null instead
 		
 		
 		while (!nodePrioQueue.isEmpty()) {
